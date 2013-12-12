@@ -1,0 +1,4 @@
+ProstoAuth
+==========
+
+Prosto authentication library
