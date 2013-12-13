@@ -6,13 +6,12 @@
  * Time: 10:40 AM
  */
 
-namespace ProstoAuth\ProstoAuth;
+namespace ProstoAuth;
 
 
 use ProstoAuth\Checker\AuthenticateMethodInterface;
 use ProstoAuth\Database\PgDatabase;
 use ProstoAuth\Exception\ProstoAuthException;
-use ProstoAuth\Request;
 
 class ProstoAuth
 {
