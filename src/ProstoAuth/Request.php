@@ -28,7 +28,7 @@ class Request
         $this->statusCode = $_SERVER['REDIRECT_STATUS'];
         $this->queryString = $_SERVER['QUERY_STRING'];
         $this->uri = $_SERVER['REQUEST_URI'];
-        $this->clientIp = $_SERVER['REMOTE_ADDR'];
+        $this->clientIp = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
     }
 
     /**
@@ -94,9 +94,9 @@ class Request
      */
     public function has($variableName)
     {
-        if(array_key_exists($variableName, $this->request)) {
+        if (array_key_exists($variableName, $this->request)) {
             return true;
-        } elseif(array_key_exists($variableName, $this->query)) {
+        } elseif (array_key_exists($variableName, $this->query)) {
             return true;
         }
 
@@ -110,11 +110,11 @@ class Request
      */
     public function get($variableName)
     {
-        if(array_key_exists($variableName, $this->request)) {
+        if (array_key_exists($variableName, $this->request)) {
             return $this->request[$variableName];
         }
 
-        if(array_key_exists($variableName, $this->query)) {
+        if (array_key_exists($variableName, $this->query)) {
             return $this->query[$variableName];
         }
 
