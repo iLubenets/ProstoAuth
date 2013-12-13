@@ -9,7 +9,7 @@
 namespace ProstoAuth;
 
 
-use ProstoAuth\Checker\AuthenticateMethodInterface;
+use ProstoAuth\AuthenticateMethod\AuthenticateMethodInterface;
 use ProstoAuth\Database\PgDatabase;
 use ProstoAuth\Exception\ProstoAuthException;
 
@@ -20,21 +20,21 @@ class ProstoAuth
     private $connection;
     private $request;
 
-    function __construct($config)
+    function __construct($config, $databaseConfig)
     {
         $this->config = $config;
         $this->setMethods($config);
-        $this->setConnection($config);
+        $this->setConnection($databaseConfig);
         $this->request = new Request();
     }
 
     private function setConnection($config)
     {
         // Check required parameters "methods"
-        if(!isset($config['database']['connection_string'])){
+        if(!isset($config['connection_string'])){
             throw new ProstoAuthException(sprintf('%s: "database.connection_string" not found in config.', __METHOD__));
         }
-        $this->connection = new PgDatabase($config['database']['connection_string']);
+        $this->connection = new PgDatabase($config['connection_string']);
     }
 
     private function setMethods($config)
