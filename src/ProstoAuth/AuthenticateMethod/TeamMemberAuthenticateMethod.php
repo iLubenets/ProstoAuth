@@ -14,7 +14,7 @@ use ProstoAuth\Provider\TeamMemberProvider;
 use ProstoAuth\Request;
 use ProstoAuth\User\UserInterface;
 
-class TeamMemberMethodChecker implements AuthenticateMethodInterface
+class TeamMemberAuthenticateMethod implements AuthenticateMethodInterface
 {
     /**
      * Return user object.
