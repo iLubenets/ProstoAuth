@@ -1,6 +1,6 @@
 <?php
 
-namespace ProstoAuth\Checker;
+namespace ProstoAuth\AuthenticateMethod;
 
 use ProstoAuth\Database\PgDatabase;
 use ProstoAuth\Request;
