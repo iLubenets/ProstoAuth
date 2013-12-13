@@ -26,9 +26,6 @@ class TeamMemberAuthenticateMethod implements AuthenticateMethodInterface
      */
     public function getUser(PgDatabase $connection, $config, Request $request)
     {
-        if(!preg_match($config['vpn_ip_mask'], $request->getClientIp())){
-            return null;
-        }
         $provider = new TeamMemberProvider($connection);
         $user = $provider->loadUserByIdentifier($request->getClientIp());
 

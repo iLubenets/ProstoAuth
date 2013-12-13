@@ -31,15 +31,15 @@ class TeamMemberProvider implements UserProviderInterface
      */
     public function loadUserByIdentifier($identifier)
     {
-        $sql = sprintf('SELECT * FROM it.teammember WHERE vpn_ip = \'%s\'',
+        $sql = sprintf('SELECT * FROM it.teammember_ipaddress WHERE ip = \'%s\'',
             $this->connection->escape_string($identifier)
         );
         $result = $this->connection->getQueryResult($sql);
 
         if(isset($result[0])){
             $userData = $result[0];
-            return new TeamMember($userData['id'], $userData['vpn_ip'], $userData['login'], $userData['password'],
-                explode(',', $userData['roles']), true);
+            return new TeamMember($userData['id'], $userData['ip'], $userData['username'], null,
+                array(), true);
         }
     }
 
